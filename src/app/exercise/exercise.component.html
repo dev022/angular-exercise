@@ -1,40 +1,44 @@
 <div class="container">
+
     <h5>Task1</h5>
     <input type = "text" class="form-control" [(ngModel)]="inpLen">
+    <!--display length-->
     <p *ngIf="showLen">{{inpLen.length}}</p>
-    <button class="btn btn-primary" (click)="showInputLength()" [disabled]="disablebtn">Length btn</button><br><br>
-
-    <button class="btn btn-success" (click)="enableLengthBtn()">Enable Length Btn</button>
+    <button class="btn btn-primary" (click)="showInputLength();" [disabled]="disableBtn">Length btn</button><br><br>
+    <!--enable length button-->
+    <button class="btn btn-success" (click)="this.disableBtn=false">Enable Length Btn</button>
     <hr>
+
     <h5>Task 2 </h5>
     <input type = "text" class="form-control" placeholder="Name" [(ngModel)]="inpName"><br>
     <input type = "text" class="form-control" placeholder="Age" [(ngModel)]="inpAge">
-
-    <div *ngIf="showBtn">
-      <button class="btn btn-primary"  (click)="displayObj(); hideUnhideDisplayBtn()">Display btn </button>
+    <!--display name and age in object & hide this button-->
+    <div [hidden]="hideBtn">
+      <button class="btn btn-primary"  (click)="displayObj(); hideUnhideDisplayBtn(); this.inpName=''; this.inpAge='' ">Display btn </button>
     </div>
-    <p [ngStyle] = "{'font-weight':'bold'}" >{{result}}</p>
+    <p class="exe-boldtext" *ngFor="let objValue of inpObj">{{objValue.name}} {{objValue.age}}</p>
+    <!--unhide above display btn-->
     <button class="btn btn-success" (click)="hideUnhideDisplayBtn()">Unhide Btn </button>
     <hr>
 
     <h5>Task 3 </h5>
     <input type = "text" class="form-control" placeholder="Name" [(ngModel)]="inp2Name"><br>
     <input type = "text" class="form-control" placeholder="Age" [(ngModel)]="inp2Age">
-    <button class="btn btn-primary" (click)="displayArray()">Display Btn </button>
-    <p [ngStyle] = "{'font-weight':'bold'}" >{{result2}}</p>
+    <!--display name and age in array-->
+    <button class="btn btn-primary" (click)="displayArray(); this.inp2Name=''; this.inp2Age=''">Display Btn </button>
+    <p class="exe-boldtext" *ngFor="let arrayValue of inp2Array">{{arrayValue.name}} {{arrayValue.age}}</p>
     <hr>
     <h5>Task 4 </h5>
-    <input type = "number" class="form-control" placeholder="Enter Number" [(ngModel)]="oddEvenInp"><br>
+    <input type = "number" class="form-control" placeholder="Enter Number" [(ngModel)]="oddEvenInp" onBlur="this.value='' "><br>
+    <!--display number in red color if odd , else in green color-->
     <p>
-        <!--<p *ngIf="oddEvenInp%2==1" [ngStyle]="{color:'red'}">{{oddEvenInp}}</p>-->
-        <span *ngIf="oddEvenInp%2==1"  [ngStyle]="{color:'red'}">{{oddEvenInp}}</span>
-        <span *ngIf="oddEvenInp%2==0" [ngStyle]="{color:'green'}">{{oddEvenInp}}</span>
-         
+        <span [ngStyle]="oddEvenInp%2==1 ? {color:'red'} : {color:'green'}" >{{oddEvenInp}}</span> 
     </p>
     <hr>
 
     <h5>Task 5 </h5>
+    <!--highlight span tag using directive-->
     <p>
-      custom directive example with <span app-exeDirective>Highlighted text</span>.
+      custom directive example with <span highlight-textDirective>Highlighted text</span>.
     </p>
 </div>

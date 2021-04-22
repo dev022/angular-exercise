@@ -2,70 +2,53 @@ import {Component} from '@angular/core';
 
 @Component({
   selector:'exercise-1',
-  templateUrl:'./exercise.component.html'
+  templateUrl:'./exercise.component.html',
+  styleUrls:['./exercise.component.css'],
 })
 //create class for component
 export class ExerciseComponent{
-
   //task1 variable
   inpLen = '';
   showLen = false;
-  disablebtn=false;
+  disableBtn=false;
 
   //task2 variable
   inpName='';
   inpAge = '';
-  inpObj = {name:'',age:''};
-  result='';
-  showBtn=true;
-
+  inpObj:any= [{name:'',age:''}];
+  hideBtn=false;
+ 
   //task3 variable
   inp2Name = '';
   inp2Age = '';
   inp2Array=[];
-  result2='';
 
   //task4 variable
   oddEvenInp:any = '';
-  oddEvenStatus='';
 
 //task 1 methods
   //show length of input and disable btn
   showInputLength(){
     this.showLen = true;
 
-    setTimeout(()=>{this.disablebtn= true;},1000);
-  }
-
-  //enable the disabled btn 
-   enableLengthBtn(){
-    this.disablebtn = false;
+    setTimeout(()=>{this.disableBtn= true;},1000);
   }
 
 //task2 methods
   //display name and age 
   displayObj(){
-    this.inpObj = {name:this.inpName , age:this.inpAge};
-
-    for( let x in this.inpObj ){
-      this.result = this.result+ this.inpObj[x];
-    }
-  }  
-
+    this.inpObj.push({name:this.inpName ,age:this.inpAge});
+  } 
+  //hide and unhide display btn
   hideUnhideDisplayBtn(){
-    this.showBtn = !this.showBtn;
+    this.hideBtn = !this.hideBtn;
   }
     
 //task3 methods
   displayArray(){
-    this.inp2Array=[this.inp2Name,this.inp2Age];
-    for( let x in this.inp2Array ){
-      this.result2 = this.result2 + this.inp2Array[x]; 
-    }
+    this.inp2Array.push({name:this.inp2Name,age:this.inp2Age});
   }
 
-//task4 methods
-  
 }
 
 
