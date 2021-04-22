@@ -1,14 +1,19 @@
-import {Directive,ElementRef,Renderer2} from '@angular/core';
+import {Directive, ElementRef, OnInit} from '@angular/core';
 
 @Directive({
   selector:'[highlight-textDirective]'
 })
 
-export class exedirDirective{
-  constructor(elementRef:ElementRef , renderer:Renderer2){
-    elementRef.nativeElement.style.backgroundColor = "red";
-    //let findSpan = elementRef.nativeElement.querySelector('span');
+export class exedirDirective implements OnInit{
 
-    //renderer.setStyle(findSpan,'color','red');
-    }
+  constructor(private elementRef:ElementRef ){}
+
+  ngOnInit(){
+    // highlight the text
+    let data = Array.from(this.elementRef.nativeElement.children);
+    data.map((element:any) => { 
+      // find children, check span tag exist
+      element.style.backgroundColor = element.localName ==  "span" ?  "red": "none"; // give background to span, others none
+    });
+  }
 }
